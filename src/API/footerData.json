@@ -1,0 +1,17 @@
+[
+    {
+        "icon" : "MdPlace",
+        "text" : "Find Us",
+        "details" : "Surat, Gujarat, India"
+    },
+    {
+        "icon" : "IoCallSharp",
+        "text" : "Call Us",
+        "details" : "+91 1234567890"
+    },
+    {
+        "icon" : "TbMailPlus",
+        "text" : "mail Us",
+        "details" : "worldatlas@gmail.com"
+    }
+]
