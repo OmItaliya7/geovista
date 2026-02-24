@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { getCountryData } from "../API/postApi";
+import { getCountryData } from "../services/postApi";
 import CountryCard from "../components/UI/CountryCard";
 import SearchFilter from "../components/UI/SearchFilter";
 import { useQuery } from "@tanstack/react-query";

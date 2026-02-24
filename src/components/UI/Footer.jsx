@@ -1,4 +1,4 @@
-import footerData from "../../API/footerData";
+import footerData from "../../data/footerData";
 import { MdPlace } from "react-icons/md";
 import { IoCallSharp } from "react-icons/io5";
 import { TbMailPlus } from "react-icons/tb";

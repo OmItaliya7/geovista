@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, NavLink } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getIndvCountryData } from "../../API/postApi";
+import { getIndvCountryData } from "../../services/postApi";
 
 const CountryIndv = () => {
 
