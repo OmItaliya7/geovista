@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getCountryData } from "../services/postApi";
 import CountryCard from "../components/UI/CountryCard";
 import SearchFilter from "../components/UI/SearchFilter";
@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const Country = () => {
 
-//   const [country, setCountry] = useState([]);
+
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("all");
   const [sortOrder, setSortOrder] = useState("");

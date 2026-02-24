@@ -9,7 +9,7 @@ const CountryCard = ({ country }) => {
   return (
     <li
       className="bg-gradient-to-br from-[#1f1f1f] via-[#1a1a1a] to-[#0f0f0f] text-white rounded-3xl border border-white/10  hover:border-white/30 transition-all duration-300 p-5 flex flex-col h-full " >
-      {/* FLAG */}
+    
       <div
         className=" w-full h-48 sm:h-52 lg:h-40 overflow-hidden rounded-xl">
         <img
@@ -19,7 +19,7 @@ const CountryCard = ({ country }) => {
         />
       </div>
 
-      {/* CONTENT */}
+
       <div className="mt-5 space-y-2 text-sm sm:text-base lg:text-sm flex-1">
         <p className="font-semibold text-lg md:truncate">{name.common}</p>
 

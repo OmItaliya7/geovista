@@ -9,10 +9,9 @@ const Contact = () => {
   return (
     <section className="bg-black text-white py-16 sm:py-20 lg:py-24">
 
-      {/* aligned container */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
 
-        {/* narrow form */}
+
         <div className="max-w-xl mx-auto">
 
           <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10">
