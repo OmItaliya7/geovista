@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "countryName": "World",
-    "capital": "No Capital",
-    "population": "Null",
-    "interestingFact": "There are 195 countries in the world today, including 193 United Nations member states and 2 observer states."
+    "countryName": "Japan",
+    "capital": "Tokyo",
+    "population": 126476461,
+    "interestingFact": "Japan is made up of over 6,800 islands, with Honshu being the largest and most populous."
   },
   {
     "id": 2,

@@ -1,11 +1,16 @@
 import HeroSection from "../components/UI/HeroSection";
-import About from "./About";
+import { lazy, Suspense } from "react";
+// import About from "./About";
+const About = lazy(() => import("./About"));
+
 
 const Home = () =>{
     return(
         <div className="min-h-screen bg-black">
           <HeroSection />
-          <About />
+          <Suspense fallback={<div className="text-white text-center mt-20">Loading About...</div>}>
+            <About />
+          </Suspense>
         </div>
     )
 }

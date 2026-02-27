@@ -1,7 +1,13 @@
 import footerData from "../../data/footerData";
-import { MdPlace } from "react-icons/md";
-import { IoCallSharp } from "react-icons/io5";
+// import { MdPlace } from "react-icons/md";
+import { MdPlace } from "@react-icons/all-files/md/MdPlace";
+// import { IoCallSharp } from "react-icons/io5";
+import { IoCallSharp } from "@react-icons/all-files/io5/IoCallSharp";
 import { TbMailPlus } from "react-icons/tb";
+
+
+import React, { memo } from "react";                                
+
 
 
 const iconMap = {
@@ -34,4 +40,4 @@ const Footer = () =>{
     )
 }
 
-export default Footer;
+export default memo(Footer);

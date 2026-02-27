@@ -1,29 +1,56 @@
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { getCountryData } from "../services/postApi";
 import CountryCard from "../components/UI/CountryCard";
 import SearchFilter from "../components/UI/SearchFilter";
 import { useQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
+import { FaArrowUp } from "react-icons/fa";
+  
 
 const Country = () => {
-
 
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("all");
   const [sortOrder, setSortOrder] = useState("");
   const [visibleCount, setVisibleCount] = useState(12);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [showTopBtn, setShowTopBtn] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-    const { ref, inView } = useInView({
+  const { ref, inView } = useInView({
       threshold: 1,
-    });
+  });
+
+
+ useEffect(() => {
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > 400 && currentScrollY > lastScrollY) {
+      // scrolling DOWN
+      setShowTopBtn(true);
+    } else {
+      // scrolling UP
+      setShowTopBtn(false);
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [lastScrollY]);
 
 
 
     useEffect(() => {
       setVisibleCount(12);
     }, [search, region, sortOrder]);
+
+    const scrollToTop = useCallback(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
   
 
     const {data, isLoading, isError} = useQuery({
@@ -34,24 +61,27 @@ const Country = () => {
 
     const country = data?.data || [];
 
-    const filteredCountries = country
-    .filter((c)=>{
-        if(!search) return true;
-        return c.name.common.toLowerCase().includes(search.toLowerCase());
-    })
-    .filter((c) =>{
-        if(region === "all") return true;
-        return c.region === region;
-    })
-    .sort((a,b) =>{
-        if(!sortOrder) return 0;
+    
+    const filteredCountries = useMemo(() => {
+      return country
+        .filter((c) => {
+          if (!search) return true;
+          return c.name.common.toLowerCase().includes(search.toLowerCase());
+        })
+        .filter((c) => {
+          if (region === "all") return true;
+          return c.region === region;
+        })
+        .sort((a, b) => {
+          if (!sortOrder) return 0;
+          return sortOrder === "asc"
+            ? a.name.common.localeCompare(b.name.common)
+            : b.name.common.localeCompare(a.name.common);
+        });
+    }, [country, search, region, sortOrder]);
 
-        return sortOrder === "asc"
-        ? a.name.common.localeCompare(b.name.common)
-        : b.name.common.localeCompare(a.name.common);   
-    })
 
-
+ 
     useEffect(() => {
       if (inView && visibleCount < filteredCountries.length) {
         setIsLoadingMore(true);
@@ -63,7 +93,7 @@ const Country = () => {
 
         return () => clearTimeout(timer);
       }
-    }, [inView, filteredCountries.length]);
+    }, [inView, filteredCountries.length, visibleCount]);
 
 
 
@@ -110,8 +140,29 @@ const Country = () => {
           ? "Loading more countries..."
           : visibleCount < filteredCountries.length
             ? "Scroll to load more"
-            : "You reached the end 🌍"}
+            : "You reached the end"}
       </div>
+      {showTopBtn && (
+        <button
+          onClick={scrollToTop}
+          className="
+            fixed 
+            bottom-6 right-4 sm:bottom-8 sm:right-8
+            w-10 h-10 sm:w-12 sm:h-12
+            flex items-center justify-center
+            rounded-full
+            bg-white/10 backdrop-blur-md
+            border border-white/20
+            text-white
+            shadow-xl
+            hover:bg-white hover:text-black
+            transition-all duration-300
+            z-50
+          "
+        >
+          ↑
+        </button>
+      )}
     </section>
   );
 };

@@ -1,4 +1,6 @@
 
+// import { memo } from "react";
+import React, { memo } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -32,8 +34,11 @@ const HeroSection = () => {
         {/* RIGHT */}
         <div className="flex-1 flex justify-center">
           <img
-            src="./pictures/world.png"
+            src="./pictures/world.webp"
             alt="World Image"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full max-w-sm sm:max-w-md lg:max-w-lg h-auto"
           />
         </div>
@@ -44,4 +49,5 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+// export default HeroSection;
+export default React.memo(HeroSection);

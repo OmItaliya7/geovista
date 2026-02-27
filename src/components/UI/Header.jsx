@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
+import { memo } from "react";
+
 
 const Header = () =>{
 
@@ -42,6 +44,6 @@ const Header = () =>{
 }
         
 
-export default Header;
+export default memo(Header);
 
 

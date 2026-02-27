@@ -1,8 +1,9 @@
 
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import React from "react";
 
-const CountryCard = ({ country }) => {
+const CountryCard =({ country }) => {
 
   const { name, capital, population, region, flags } = country;
 
@@ -15,6 +16,8 @@ const CountryCard = ({ country }) => {
         <img
           src={flags.png}
           alt={`${name.common} flag`}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
         />
       </div>
@@ -50,4 +53,5 @@ const CountryCard = ({ country }) => {
   );
 };
 
-export default CountryCard;
+// export default CountryCard;
+export default React.memo(CountryCard);
